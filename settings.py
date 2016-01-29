@@ -10,13 +10,13 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
-DEBUG = True  # set to True to enable debugging
+DEBUG = False # set to True to enable debugging
 TEMPLATE_DEBUG = False  # keep false when debugging jinja2 templates
 INTERNAL_IPS = ('127.0.0.1',)
 ALLOWED_HOSTS = ['*',]#change this for better security on your site
 
 ADMINS = (
-    ('Your Name', 'your_email@domain.com'),
+    ('Jai Luthra', 'jai15043@iiitd.ac.in'),
 )
 
 MANAGERS = ADMINS
@@ -52,7 +52,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Kolkata'
 
 SITE_ID = 1
 
@@ -321,3 +321,11 @@ VERIFIER_EXPIRE_DAYS = 3
 AVATAR_AUTO_GENERATE_SIZES = (16, 32, 48, 128) #change if avatars are sized differently
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+# Heroku config
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Enable Persistent Connections
+DATABASES['default']['CONN_MAX_AGE'] = 500
