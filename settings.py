@@ -329,3 +329,8 @@ DATABASES['default'] =  dj_database_url.config()
 
 # Enable Persistent Connections
 DATABASES['default']['CONN_MAX_AGE'] = 500
+
+try:
+    from local_settings import *
+except ImportError:
+    print("No local_settings.py found, using default settings")
